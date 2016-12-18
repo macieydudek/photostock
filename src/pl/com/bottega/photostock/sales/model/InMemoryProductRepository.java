@@ -1,5 +1,7 @@
 package pl.com.bottega.photostock.sales.model;
 
+import pl.com.bottega.photostock.sales.model.money.Money;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;

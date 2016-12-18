@@ -1,8 +1,7 @@
 package pl.com.bottega.photostock.sales.model;
 
-/**
- * Created by maciekdudek on 17/12/16.
- */
+import pl.com.bottega.photostock.sales.model.money.Money;
+
 public abstract class AbstractProduct implements Product {
     protected String number;
     private String name;
