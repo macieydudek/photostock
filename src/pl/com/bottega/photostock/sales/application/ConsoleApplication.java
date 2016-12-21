@@ -11,9 +11,9 @@ public class ConsoleApplication {
         Product picture3 = productRepository.get("3");
         Product clip1 = productRepository.get("4");
         Product product5 = productRepository.get("5");
-        Client client = new Client("Johny X", new Address(), Money.valueOf(100));
+        Client client = new Client("Johny X", new Address(), Money.valueOf(10000));
         Client vipClient = new VIPClient("Johny V", new Address(),
-                Money.ZERO, Money.valueOf(100));
+                Money.ZERO, Money.valueOf(10000));
         System.out.println(vipClient.introduce());
         Reservation reservation = new Reservation(vipClient);
 

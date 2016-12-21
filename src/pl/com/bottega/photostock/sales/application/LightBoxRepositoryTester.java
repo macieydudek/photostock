@@ -13,8 +13,8 @@ public class LightBoxRepositoryTester {
         Product picture2 = productRepository.get("2");
         Product picture3 = productRepository.get("3");
 
-        Client client = new Client("Johny X", new Address(), Money.valueOf(100));
-        Client danny = new Client("Danny X", new Address(), Money.valueOf(100));
+        Client client = new Client("Johny X", new Address(), Money.valueOf(10000));
+        Client danny = new Client("Danny X", new Address(), Money.valueOf(10000));
 
         LightBox lb1 = new LightBox(danny, "Samochody");
         LightBox lb2 = new LightBox(client, "Bmw");

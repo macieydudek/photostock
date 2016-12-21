@@ -1,8 +1,6 @@
 package pl.com.bottega.photostock.sales.model.money;
 
 
-import pl.com.bottega.photostock.sales.model.Rational;
-
 public interface Money extends Comparable<Money> {
 
     enum Currency {CREDIT;}
@@ -17,15 +15,25 @@ public interface Money extends Comparable<Money> {
 
     Money multiply(long factor);
 
-    boolean gte(Money money);
+    default boolean gte(Money money) {
+        return compareTo(money) >= 0;
+    }
 
-    boolean lte(Money money);
+    default boolean gt(Money money) {
+        return compareTo(money) > 0;
+    }
 
-    boolean gt(Money money);
+    default boolean lte(Money money) {
+        return compareTo(money) <= 0;
+    }
 
-    boolean lt(Money money);
+    default boolean lt(Money money) {
+        return compareTo(money) < 0;
+    }
 
     Money opposite();
+
+    IntegerMoney convertToInteger();
 
     RationalMoney convertToRational();
 
@@ -34,10 +42,9 @@ public interface Money extends Comparable<Money> {
     }
 
     static Money valueOf(long value, Currency currency) {
-        return new RationalMoney(Rational.valueOf(value), currency);
+        return new IntegerMoney(value, currency);
     }
 
-    static Money valueOf(long value) {
-        return new RationalMoney(Rational.valueOf(value), DEFAULT_CURRENCY);
+    static Money valueOf(long value) {return new IntegerMoney(value, DEFAULT_CURRENCY);
     }
 }

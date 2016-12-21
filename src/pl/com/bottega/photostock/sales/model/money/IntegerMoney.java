@@ -1,5 +1,7 @@
 package pl.com.bottega.photostock.sales.model.money;
 
+import java.util.Objects;
+
 class IntegerMoney implements Money {
     private long cents;
     private Currency currency;
@@ -44,16 +46,16 @@ class IntegerMoney implements Money {
     @Override
     public int compareTo(Money o) {
         IntegerMoney integerMoney = safeConvert(o);
-        if(cents == integerMoney.cents)
+        if (cents == integerMoney.cents)
             return 0;
-        else if(cents < integerMoney.cents)
+        else if (cents < integerMoney.cents)
             return -1;
         else
             return 1;
     }
 
     private void ensureSameCurrency(IntegerMoney other) {
-        if(currency != other.currency) {
+        if (currency != other.currency) {
             throw new IllegalArgumentException("Currency missmatch");
         }
     }
@@ -64,5 +66,34 @@ class IntegerMoney implements Money {
         return integerMoney;
     }
 
-    //napisać equalsa i hashcode
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if ((other == null) || !(other instanceof Money)) return false;
+
+        IntegerMoney o;
+        if(other instanceof RationalMoney) {
+            RationalMoney otherAsRational = (RationalMoney) other;
+            o = otherAsRational.convertToInteger();
+        }
+        else {
+            o = (IntegerMoney) other;
+        }
+
+        if(this.currency != o.currency) return false;
+
+        return this.cents == o.cents;
+
+    }
+
+    @Override
+    public int hashCode() {
+        Long l = cents;
+        return l.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return cents / 100 + " " + currency;
+    }
 }
