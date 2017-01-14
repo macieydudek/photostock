@@ -2,9 +2,8 @@ package pl.com.bottega.photostock.sales.model;
 
 import pl.com.bottega.photostock.sales.model.money.Money;
 
-/**
- * Created by maciekdudek on 17/12/16.
- */
+import java.util.List;
+
 public interface Product {
     Money calculatePrice(Client client);
 

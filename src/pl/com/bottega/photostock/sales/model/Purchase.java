@@ -6,14 +6,24 @@ public class Purchase {
 
     private Client client;
 
-    private Date purchaseDate;
+    private Date purchaseDate = new Date();
 
     private List<Product> items;
+
+    private String number;
 
     public Purchase(Client client, Collection<Product> items) {
         this.client = client;
         this.items = new LinkedList<Product>(items);
+        this.number = UUID.randomUUID().toString();
         sortProductByNumberAsc();
+        markProductsAsSold();
+    }
+
+    private void markProductsAsSold() {
+        for(Product product : items) {
+            product.soldPer(client);
+        }
     }
 
     private void sortProductByNumberAsc() {
@@ -33,5 +43,9 @@ public class Purchase {
 
     public int getItemsCount() {
         return items.size();
+    }
+
+    public String getNumber() {
+        return number;
     }
 }

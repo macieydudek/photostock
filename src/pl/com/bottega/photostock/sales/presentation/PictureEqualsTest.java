@@ -1,4 +1,4 @@
-package pl.com.bottega.photostock.sales.application;
+package pl.com.bottega.photostock.sales.presentation;
 
 import pl.com.bottega.photostock.sales.model.Clip;
 import pl.com.bottega.photostock.sales.model.Picture;

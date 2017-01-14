@@ -45,7 +45,7 @@ public abstract class AbstractProduct implements Product {
     }
 
     private void ensureReservedByClient(Client client) {
-        if(!isReservedByClient(client)) {
+        if (!isReservedByClient(client)) {
             throw new IllegalArgumentException(String.format("Picture %s is not reserved by %s", getNumber(), client.getName()));
         }
     }

@@ -94,6 +94,7 @@ class IntegerMoney implements Money {
 
     @Override
     public String toString() {
-        return cents / 100 + " " + currency;
+        return cents / 100 + "." + cents%100 + " " + currency;
     }
 }
+

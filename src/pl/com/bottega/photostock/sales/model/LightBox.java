@@ -11,6 +11,9 @@ public class LightBox implements Iterable<Product> {
     private String name;
     private Collection<Product> items = new LinkedList<>();
 
+
+    private static int lightBoxID = 0;
+
     public LightBox(Client client, String name) {
         this.name = name;
         this.client = client;

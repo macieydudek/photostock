@@ -16,7 +16,7 @@ public class Offer {
     }
 
     public boolean sameAs(Offer other, Money money) { //kwota tolerancji, jeśli jest mniej to jest OK.
-        return false;
+        return true;
     }
 
     public int getItemsCount() {
@@ -44,4 +44,7 @@ public class Offer {
         });
     }
 
+    public List<Product> getItems() {
+        return items;
+    }
 }

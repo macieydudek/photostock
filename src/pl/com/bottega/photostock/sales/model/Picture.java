@@ -7,6 +7,10 @@ import java.util.HashSet;
 
 public class Picture extends AbstractProduct {
 
+    public boolean hasTag(String tag) {
+        return tags.contains(tag);
+    }
+
     private Collection<String> tags;
 
     public Picture(String number, String name, Collection<String> tags, Money catalogPrice, boolean active) {

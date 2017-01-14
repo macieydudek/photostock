@@ -8,5 +8,8 @@ public interface LightBoxRepository {
 
     Collection<LightBox> getFor(Client client);
 
+    LightBox findLightBox(Client client, String lightBoxName);
+
+    Collection<String> getLightBoxNames(Client client);
 }
 

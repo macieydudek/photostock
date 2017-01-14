@@ -4,17 +4,23 @@ import pl.com.bottega.photostock.sales.model.money.Money;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class Client {
 
     private String name;
+    private String number;
     private Address address; //do adresu dobrze wprowadzić nowa klasę
     private ClientStatus status;
     protected Money balance;
+    private boolean active = true;
+
+    protected static int id;
 
     private Collection <Transaction> transactions;
 
     public Client(String name, Address address, ClientStatus status, Money balance) {
+        this.number = nextNumber();
         this.name = name;
         this.address = address;
         this.status = status;
@@ -24,6 +30,11 @@ public class Client {
             this.transactions.add(new Transaction(balance, "Opening account"));
         }
 
+    }
+
+    private static String nextNumber() {
+        id += 100;
+        return String.valueOf(id);
     }
 
     public Client(String name, Address address, Money balance) {
@@ -64,4 +75,16 @@ public class Client {
     public String getName() {
         return name;
     }
+
+    public String getNumber() {return number;}
+
+    public void deactivate() {
+        active = false;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+
 }
