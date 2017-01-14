@@ -1,8 +1,8 @@
 package pl.com.bottega.photostock.sales.presentation;
 
 import pl.com.bottega.photostock.sales.application.ProductCatalog;
-import pl.com.bottega.photostock.sales.model.Client;
-import pl.com.bottega.photostock.sales.model.Product;
+import pl.com.bottega.photostock.sales.model.client.Client;
+import pl.com.bottega.photostock.sales.model.product.Product;
 import pl.com.bottega.photostock.sales.model.money.Money;
 
 import java.util.InputMismatchException;

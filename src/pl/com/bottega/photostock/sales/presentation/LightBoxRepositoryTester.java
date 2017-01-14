@@ -2,8 +2,12 @@ package pl.com.bottega.photostock.sales.presentation;
 
 import pl.com.bottega.photostock.sales.infrastructure.InMemoryLightBoxRepository;
 import pl.com.bottega.photostock.sales.infrastructure.InMemoryProductRepository;
-import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.client.Address;
+import pl.com.bottega.photostock.sales.model.client.Client;
+import pl.com.bottega.photostock.sales.model.lightbox.LightBox;
 import pl.com.bottega.photostock.sales.model.money.Money;
+import pl.com.bottega.photostock.sales.model.product.Product;
+import pl.com.bottega.photostock.sales.model.product.ProductRepository;
 
 import java.util.Collection;
 

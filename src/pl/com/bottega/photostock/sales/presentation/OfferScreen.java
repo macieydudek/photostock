@@ -1,10 +1,10 @@
 package pl.com.bottega.photostock.sales.presentation;
 
 import pl.com.bottega.photostock.sales.application.PurchaseProcess;
-import pl.com.bottega.photostock.sales.model.CantAffordException;
-import pl.com.bottega.photostock.sales.model.Offer;
-import pl.com.bottega.photostock.sales.model.OfferMismatchException;
-import pl.com.bottega.photostock.sales.model.Product;
+import pl.com.bottega.photostock.sales.model.client.CantAffordException;
+import pl.com.bottega.photostock.sales.model.purchase.Offer;
+import pl.com.bottega.photostock.sales.model.purchase.OfferMismatchException;
+import pl.com.bottega.photostock.sales.model.product.Product;
 
 import java.util.Scanner;
 

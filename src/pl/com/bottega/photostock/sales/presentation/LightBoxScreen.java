@@ -1,8 +1,8 @@
 package pl.com.bottega.photostock.sales.presentation;
 
 import pl.com.bottega.photostock.sales.application.LightBoxMenagment;
-import pl.com.bottega.photostock.sales.model.LightBox;
-import pl.com.bottega.photostock.sales.model.Product;
+import pl.com.bottega.photostock.sales.model.lightbox.LightBox;
+import pl.com.bottega.photostock.sales.model.product.Product;
 
 import java.util.Collection;
 import java.util.Scanner;

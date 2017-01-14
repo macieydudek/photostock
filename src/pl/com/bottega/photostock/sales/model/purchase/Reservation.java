@@ -1,8 +1,10 @@
-package pl.com.bottega.photostock.sales.model;
+package pl.com.bottega.photostock.sales.model.purchase;
+
+import pl.com.bottega.photostock.sales.model.client.Client;
+import pl.com.bottega.photostock.sales.model.product.Product;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 public class Reservation {

@@ -5,7 +5,11 @@ import pl.com.bottega.photostock.sales.application.LightBoxMenagment;
 import pl.com.bottega.photostock.sales.application.ProductCatalog;
 import pl.com.bottega.photostock.sales.application.PurchaseProcess;
 import pl.com.bottega.photostock.sales.infrastructure.*;
-import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.client.ClientRepository;
+import pl.com.bottega.photostock.sales.model.lightbox.LightBoxRepository;
+import pl.com.bottega.photostock.sales.model.product.ProductRepository;
+import pl.com.bottega.photostock.sales.model.purchase.PurchaseRepository;
+import pl.com.bottega.photostock.sales.model.purchase.ReservationRepository;
 
 import java.util.Scanner;
 
