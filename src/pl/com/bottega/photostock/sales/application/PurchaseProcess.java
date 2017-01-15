@@ -70,6 +70,7 @@ public class PurchaseProcess {
         Purchase purchase = new Purchase(client, actualOffer.getItems());
         purchaseRepository.put(purchase);
         reservation.deactivate();
+        clientRepository.update(client);
     }
 
     private Reservation findReservation(String reservationNumber) {

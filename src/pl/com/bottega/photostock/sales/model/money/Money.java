@@ -49,4 +49,16 @@ public interface Money extends Comparable<Money> {
 
     static Money valueOf(float value) {return new IntegerMoney((long)(value * 100L), DEFAULT_CURRENCY);
     }
+
+    static Money valueOf(String moneyString) {
+        String[] parameters = moneyString.split(" ");
+        if (parameters.length != 1 && parameters.length != 2) {
+            throw new IllegalArgumentException("Invalid money format");
+        }
+        long value = (long) (Double.parseDouble(parameters[0]) * 100);
+        if (parameters.length == 2) {
+            return Money.valueOf(value, Currency.valueOf(parameters[1]));
+        }
+        return Money.valueOf(value);
+    }
 }

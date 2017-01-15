@@ -1,6 +1,6 @@
 package pl.com.bottega.photostock.sales.presentation;
 
-import pl.com.bottega.photostock.sales.infrastructure.InMemoryProductRepository;
+import pl.com.bottega.photostock.sales.infrastructure.memory.InMemoryProductRepository;
 import pl.com.bottega.photostock.sales.model.client.Address;
 import pl.com.bottega.photostock.sales.model.client.Client;
 import pl.com.bottega.photostock.sales.model.lightbox.LightBox;

@@ -1,4 +1,4 @@
-package pl.com.bottega.photostock.sales.infrastructure;
+package pl.com.bottega.photostock.sales.infrastructure.memory;
 
 import pl.com.bottega.photostock.sales.model.purchase.Purchase;
 import pl.com.bottega.photostock.sales.model.purchase.PurchaseRepository;

@@ -12,24 +12,30 @@ public class Client {
     private Address address; //do adresu dobrze wprowadzić nowa klasę
     private ClientStatus status;
     protected Money balance;
-    private boolean active = true;
+    private Collection<Transaction> transanctions;
+    private boolean active;
 
     protected static int id;
 
     private Collection <Transaction> transactions;
-
-    public Client(String name, Address address, ClientStatus status, Money balance) {
-        this.number = nextNumber();
+    //konstruktor do wyciągania z repozytorium
+    public Client(String number, String name, Address address, ClientStatus status, Money balance, boolean active, Collection<Transaction> transanctions) {
+        this.number = number;
         this.name = name;
         this.address = address;
         this.status = status;
         this.balance = balance;
-        this.transactions = new LinkedList<>();
-        if(!balance.equals(Money.ZERO)) {
-            this.transactions.add(new Transaction(balance, "Opening account"));
+        this.transactions = new LinkedList<>(transanctions);
+        this.active = active;
         }
-
+    //konstruktor do tworzenia nowego klienta
+    public Client(String name, Address address, ClientStatus status, Money initialBalance) {
+        this(nextNumber(), name, address, status, initialBalance, true, new LinkedList<>());
+        if (!initialBalance.equals(Money.ZERO)) {
+            this.transactions.add(new Transaction(initialBalance, "Opening account"));
+        }
     }
+
 
     private static String nextNumber() {
         id += 100;
@@ -86,4 +92,15 @@ public class Client {
     }
 
 
+    public ClientStatus getStatus() {
+        return status;
+    }
+
+    public Money getBalance() {
+        return balance;
+    }
+
+    public Collection<Transaction> getTransactions() {
+        return new LinkedList<>(transactions);
+    }
 }

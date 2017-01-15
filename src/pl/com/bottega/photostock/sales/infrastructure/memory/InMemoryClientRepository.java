@@ -1,4 +1,4 @@
-package pl.com.bottega.photostock.sales.infrastructure;
+package pl.com.bottega.photostock.sales.infrastructure.memory;
 
 import pl.com.bottega.photostock.sales.model.client.Address;
 import pl.com.bottega.photostock.sales.model.client.Client;
@@ -24,5 +24,9 @@ public class InMemoryClientRepository implements ClientRepository {
     @Override
     public Client get(String clientNumber) {
         return REPOSITORY.get(clientNumber);
+    }
+
+    @Override
+    public void update(Client client) {
     }
 }
