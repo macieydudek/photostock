@@ -8,6 +8,7 @@ import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 
 class CSVTransactionsRepository {
 
@@ -18,15 +19,15 @@ class CSVTransactionsRepository {
     }
 
     void saveTransactions(Client client, Collection<Transaction> transactions) {
-        File file = new File(getRepositoryPath(client.getNumber()));
-        try(PrintWriter printWriter = new PrintWriter(file)) {
-            for(Transaction transaction : transactions){
+        String path = getRepositoryPath(client.getNumber());
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(path, true))) {
+            for (Transaction transaction : transactions) {
                 String[] components = {
-                    transaction.getValue().toString(),
-                    transaction.getDescription(),
+                        transaction.getValue().toString(),
+                        transaction.getDescription(),
                         transaction.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME)
                 };
-                printWriter.println(StringUtils.join(Arrays.asList(components),","));
+                printWriter.println(StringUtils.join(Arrays.asList(components), ","));
             }
         } catch (Exception e) {
             throw new DataAccessException(e);
@@ -34,7 +35,18 @@ class CSVTransactionsRepository {
     }
 
     Collection<Transaction> getTransactions(String clientNumber) {
-        return null;
+        Collection<Transaction> transactions = new LinkedList<>();
+        String path = getRepositoryPath(clientNumber);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] components = line.split(",");
+
+            }
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+        return transactions;
     }
 
     private String getRepositoryPath(String clientNumber) {
