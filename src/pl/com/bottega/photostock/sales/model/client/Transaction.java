@@ -10,11 +10,16 @@ public class Transaction {
     private String description;
 
     private LocalDateTime timestamp;
-    
+
     public Transaction (Money value, String description) {
         this.value = value;
         this.description = description;
         timestamp = LocalDateTime.now();
+    }
+
+    public Transaction(Money value, String description, String time) {
+        this(value, description);
+        this.timestamp = LocalDateTime.parse(time);
     }
 
     public Money getValue() {

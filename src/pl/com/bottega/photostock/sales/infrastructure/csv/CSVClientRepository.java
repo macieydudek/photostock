@@ -13,10 +13,13 @@ public class CSVClientRepository implements ClientRepository {
 
     private String path, tmpPath, folderPath;
 
+    private CSVTransactionsRepository csvTransactionsRepository;
+
     public CSVClientRepository(String folderPath) {
         this.folderPath = folderPath;
         this.path = folderPath + File.separator + "clients.csv";
         this.tmpPath = path + ".tmp";
+        this.csvTransactionsRepository = new CSVTransactionsRepository(folderPath);
     }
 
     @Override
@@ -92,9 +95,9 @@ public class CSVClientRepository implements ClientRepository {
         Money balance = Money.valueOf(attributes[4]);
         if (status.equals(ClientStatus.VIP)) {
             Money creditLimit = Money.valueOf(attributes[5]);
-            return new VIPClient(number, name, new Address(), balance, creditLimit, active, new LinkedList<>());
+            return new VIPClient(number, name, new Address(), balance, creditLimit, active, csvTransactionsRepository.getTransactions(number));
         } else {
-            return new Client(number, name, new Address(), status, balance, active, new LinkedList<>());
+            return new Client(number, name, new Address(), status, balance, active, csvTransactionsRepository.getTransactions(number));
         }
     }
 }

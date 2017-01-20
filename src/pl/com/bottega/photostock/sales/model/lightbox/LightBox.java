@@ -3,6 +3,7 @@ package pl.com.bottega.photostock.sales.model.lightbox;
 import pl.com.bottega.photostock.sales.model.client.Client;
 import pl.com.bottega.photostock.sales.model.product.Product;
 
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -12,14 +13,19 @@ public class LightBox implements Iterable<Product> {
 
     private Client client;
     private String name;
-    private Collection<Product> items = new LinkedList<>();
+    private Collection<Product> items;
 
 
     private static int lightBoxID = 0;
 
     public LightBox(Client client, String name) {
+        this(client, name, new LinkedList<>());
+    }
+
+    public LightBox(Client client, String name, Collection<Product> items) {
         this.name = name;
         this.client = client;
+        this.items = new LinkedList<>(items);
     }
 
     public void add(Product product) {
@@ -69,5 +75,9 @@ public class LightBox implements Iterable<Product> {
                 }
             }
         }
+    }
+
+    public Collection<Product> getItems(){
+        return new LinkedList<Product>(items);
     }
 }

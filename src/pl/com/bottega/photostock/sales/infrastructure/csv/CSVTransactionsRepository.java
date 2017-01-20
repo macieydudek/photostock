@@ -3,6 +3,7 @@ package pl.com.bottega.photostock.sales.infrastructure.csv;
 import com.sun.deploy.util.StringUtils;
 import pl.com.bottega.photostock.sales.model.client.Client;
 import pl.com.bottega.photostock.sales.model.client.Transaction;
+import pl.com.bottega.photostock.sales.model.money.Money;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
@@ -41,7 +42,8 @@ class CSVTransactionsRepository {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] components = line.split(",");
-
+                Transaction transaction = new Transaction(Money.valueOf(components[0]), components[1], components[2]);
+                transactions.add(transaction);
             }
         } catch (Exception e) {
             throw new DataAccessException(e);
