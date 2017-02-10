@@ -30,7 +30,19 @@ public class CSVLightBoxRepository implements LightBoxRepository{
 
     @Override
     public void put(LightBox l) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path, true))) {
+        Client owner = l.getOwner();
+        boolean isNewLightBoxFroClient = true;
+        ensureCSVExist();
+        try (   BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+                PrintWriter pw = new PrintWriter(new FileWriter(path, true))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] attributes = line.split(",");
+                String numberofClient = attributes[0];
+                if(numberofClient.equals(owner.getNumber()) && l.getName().equals(attributes[1])){
+                    writeLightBox(l, pw);
+                }
+            }
             List<String> listOfProductNumbers = getListOfProductNumbers(l);
             String listOfProducts = StringUtils.join(listOfProductNumbers, "|");
             String [] components = {
@@ -40,6 +52,21 @@ public class CSVLightBoxRepository implements LightBoxRepository{
             };
             pw.println(StringUtils.join(Arrays.asList(components), ","));
         } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+    private void writeLightBox(LightBox l, PrintWriter pw) {
+        Collection<String> productNumbers = new LinkedList<>();
+        for (Product p : l) {
+
+        }
+    }
+
+    private void ensureCSVExist() {
+        try {
+            new File(path).createNewFile();
+        } catch (IOException e) {
             throw new DataAccessException(e);
         }
     }
@@ -102,30 +129,11 @@ public class CSVLightBoxRepository implements LightBoxRepository{
         }
     }
 
-    public static void main(String[] args) {
-        LightBoxRepository csvLightBox = new CSVLightBoxRepository("/Users/maciekdudek/Desktop/photostockData", new InMemoryProductRepository());
-        ClientRepository csvClient = new CSVClientRepository("/Users/maciekdudek/Desktop/photostockData");
-        ProductRepository productRepository = new InMemoryProductRepository();
-        LightBox l1 = new LightBox(csvClient.get("100"), "test1");
-        LightBox l2 = new LightBox(csvClient.get("100"), "test2");
-        l1.add(productRepository.get("1"));
-        l1.add(productRepository.get("2"));
-        l1.add(productRepository.get("3"));
-        l1.add(productRepository.get("4"));
-        csvLightBox.put(l1);
-        csvLightBox.put(l2);
-        l1 = null;
-        System.out.println((l1 == null));
-        Client c = csvClient.get("100");
-        l1 = csvLightBox.findLightBox(c, "test1");
-        System.out.println(l1 == null);
-        for (Product p : l1) {
-            System.out.println(p.getNumber() + "|" + p.getName() + "|" + p.calculatePrice(l1.getOwner()));
-        }
-
-
+    @Override
+    public void updateLightBox(LightBox lightBox) {
 
     }
+
 
     private List<String> getListOfProductNumbers(LightBox l) {
         List<String> listOfProductNumbers = new LinkedList<>();

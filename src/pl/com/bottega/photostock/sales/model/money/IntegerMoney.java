@@ -2,11 +2,11 @@ package pl.com.bottega.photostock.sales.model.money;
 
 import java.util.Objects;
 
-class IntegerMoney implements Money {
+public class IntegerMoney implements Money {
     private long cents;
     private Currency currency;
 
-    IntegerMoney(long cents, Currency currency) {
+    public IntegerMoney(long cents, Currency currency) {
         this.cents = cents;
         this.currency = currency;
     }
@@ -95,5 +95,10 @@ class IntegerMoney implements Money {
     @Override
     public String toString() {
         return String.format("%d.%02d %s", cents / 100, + cents%100, currency);
+    }
+
+
+    public long toCents() {
+        return this.cents;
     }
 }

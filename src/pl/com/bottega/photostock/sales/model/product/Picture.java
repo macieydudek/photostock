@@ -19,9 +19,15 @@ public class Picture extends AbstractProduct {
         this.tags = new HashSet<String>(tags); //defensywne kopiowanie
     }
 
+    public Picture(String number, String name, Collection<String> tags, Money catalogPrice, boolean active, Client reservationOwner, Client buyer) {
+        super(name, number, catalogPrice, active, reservationOwner, buyer);
+        this.tags = new HashSet<String>(tags); //defensywne kopiowanie
+    }
+
     public Picture(String number, String name, Collection<String> tags, Money catalogPrice) {
         this(number, name, tags, catalogPrice, true);
     }
+
 
     @Override
     public Money calculatePrice(Client client) {

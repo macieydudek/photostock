@@ -4,6 +4,8 @@ import pl.com.bottega.photostock.sales.model.client.Client;
 import pl.com.bottega.photostock.sales.model.money.Money;
 
 public interface Product {
+    public Money getCatalogPrice();
+
     Money calculatePrice(Client client);
 
     boolean isAvailable();

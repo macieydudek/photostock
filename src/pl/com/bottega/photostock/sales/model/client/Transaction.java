@@ -22,6 +22,11 @@ public class Transaction {
         this.timestamp = LocalDateTime.parse(time);
     }
 
+    public Transaction(Money value, String description, LocalDateTime time) {
+        this(value, description);
+        this.timestamp = time;
+    }
+
     public Money getValue() {
         return value;
     }

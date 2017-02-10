@@ -39,6 +39,11 @@ public class InMemoryLightBoxRepository implements LightBoxRepository {
     }
 
     @Override
+    public void updateLightBox(LightBox lightBox) {
+
+    }
+
+    @Override
     public LightBox findLightBox(Client client, String lightBoxName) {
         Collection<LightBox> lightBoxes = REPOSITORY.get(client);
         if(lightBoxes != null)

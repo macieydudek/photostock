@@ -18,9 +18,14 @@ public class Reservation {
     Collection<Product> items;
 
     public Reservation(Client client) {
+        this(client, UUID.randomUUID().toString(), new LinkedList<>(), true);
+    }
+
+    public Reservation(Client client, String number, Collection<Product> items, boolean active) {
         this.client = client;
-        this.number = UUID.randomUUID().toString(); //!!!!
-        this.items = new LinkedList<>();
+        this.number = number;
+        this.items = items;
+        this.active = active;
     }
 
     public void add(Product product) {
@@ -83,5 +88,9 @@ public class Reservation {
 
     public boolean isActive() {
         return active;
+    }
+
+    public Collection<Product> getItems() {
+        return items;
     }
 }

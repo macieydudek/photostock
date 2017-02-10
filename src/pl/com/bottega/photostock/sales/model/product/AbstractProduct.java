@@ -6,16 +6,24 @@ import pl.com.bottega.photostock.sales.model.money.Money;
 public abstract class AbstractProduct implements Product {
     protected String number;
     private String name;
-    protected Money catalogPrice;
-    private boolean active; //ustawienie tego na false de facto kasuje zdjęcie
-    private Client reservationOwner;
-    private Client buyer;
 
+    protected Money catalogPrice;
+
+    private boolean active; //ustawienie tego na false de facto kasuje zdjęcie
+    private final Client reservationOwer;
+    private Client reservationOwner;
+    protected Client buyer;
     public AbstractProduct(String name, String number, Money catalogPrice, boolean active) {
+        this(name, number, catalogPrice, active, null, null);
+    }
+
+    public AbstractProduct(String name, String number, Money catalogPrice, boolean active, Client reservationOwer, Client buyer) {
         this.name = name;
         this.number = number;
         this.catalogPrice = catalogPrice;
         this.active = active;
+        this.reservationOwer = reservationOwer;
+        this.buyer = buyer;
     }
 
     public abstract Money calculatePrice(Client client);
@@ -100,4 +108,10 @@ public abstract class AbstractProduct implements Product {
     public int hashCode() {
         return number != null ? number.hashCode() : 0;
     }
+
+    public Money getCatalogPrice() {
+        return catalogPrice;
+    }
+
+
 }
